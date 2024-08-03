@@ -1,0 +1,144 @@
+.paycheck {
+  font-family: Arial, sans-serif;
+  width: 75%;
+  border: 1px solid #000;
+  padding: 4%;
+}
+
+.header, .employee-info, .work-hours, .daily-hours, .bank-info, .amount, .notice, .footer {
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.paycheck-number {
+  text-align: right;
+}
+
+.employee-info, .work-hours, .daily-hours {
+  width: 100%;
+  text-align: left;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 22px;
+
+}
+
+table, th, td {
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+.bank-info, .amount {
+  text-align: left;
+}
+
+.notice {
+  font-size: 12px;
+  text-align: left;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer table {
+border: 0px;
+}
+
+
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+
+.text-left {
+  text-align: left;
+}
+
+.table-hours, .table-week{
+
+width: 85%;
+margin-left: 9%;
+
+}
+
+
+td p {
+  margin: 0;
+  padding: 0;
+}
+
+.tittles{
+
+  font-weight: bold;
+
+}
+
+.table-Notice th{
+  background: Gainsboro;
+}
+
+.table-disc{
+  height:0px;
+}
+
+
+.remove-border .noBorder td{
+  border: none;
+  border-color: red;
+}
+.background-gray{
+  background: Gainsboro;
+}
+
+.img{
+  width: 75px;
+  display: block;
+  margin-left: 30px;
+}
+
+.spacet-top{
+margin-top: 30px;
+}
+
+.remove-margin{
+  margin: 0;
+  padding: 0;
+}
+
+.unrlined{
+  border-bottom:1px solid #000000; width:175%; padding-bottom:5px;
+}
+
+.remittance{
+  background: Gainsboro;
+
+}
+
+.signature{
+width: 80%;
+
+}
+
+
+.borderCheck{
+  border: 1px dashed #000;
+}
+
+.paycheck-number{
+width: auto;}
+

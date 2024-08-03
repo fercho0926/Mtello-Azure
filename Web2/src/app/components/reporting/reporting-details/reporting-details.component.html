@@ -1,0 +1,69 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h3 class="card-title">FileName report : 	Payment company XX - fileName :checks landers 13-06-2024</h3>
+                <p class="card-category">Total Number of Rows: 205</p>
+                <p class="card-category">Total Hours: 7,528.25</p>
+                <p class="card-category">Total Amount: 174,703.25</p>
+          
+        
+            </div>
+            <div>
+                <button mat-raised-button color="warn">Print All</button>
+
+
+
+            </div>
+            <div class="card-body">
+
+                <div >
+               
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-warning">
+                                    <th>Date</th>
+                                    <th>NAME</th>
+                                    <th>TOTAL HOURS </th>
+                                    <th>TOTAL MONEY</th>
+                                    <th>RATE</th>
+                                    <th>MEMO</th>
+                                    <th>STATUS</th>
+
+                                    <th>Actions</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of dummydata">
+                                        <td>{{item.DATE}}</td>
+                                        <td>{{item.NAME}}</td>
+                                        <td>{{item.TOTAL_HR}}</td>
+                                        <td>{{item.MONEY}}</td>
+                                        <td>{{item.RATE}}</td>
+                                        <td>{{item.MEMO}}</td>
+                                        <td>{{item.STATUS}}</td>
+                                        <td class="td-actions text-right">
+                                            <button mat-raised-button type="button" matTooltip="View details" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="detailsByEmployee()">
+                                                <i class="material-icons">visibility</i>
+                                            </button>
+                                            <button mat-raised-button type="button" matTooltip="print" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="print()">
+                                                <i class="material-icons">print</i>
+                                            </button>
+                                            <button mat-raised-button type="button" matTooltip="void paycheck" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                        
+                                </tbody>
+                            </table>
+                        </div>
+                
+                </div>
+
+         
+            </div>
+ 
+        </div>
+    </div>
+  </div>
+  

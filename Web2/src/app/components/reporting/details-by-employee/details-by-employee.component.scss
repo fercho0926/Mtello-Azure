@@ -1,0 +1,50 @@
+.main-content {
+    padding: 20px;
+  }
+  
+  .container-fluid {
+    padding: 0;
+  }
+  
+  .card {
+    margin: 20px 0;
+  }
+  
+  .mat-card {
+    margin: 20px 0;
+  }
+  
+  .mat-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .table-container {
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th.mat-header-cell, td.mat-cell {
+    text-align: left;
+  }
+  
+  th.mat-header-cell {
+    font-weight: bold;
+    background-color: #f1f1f1;
+  }
+  
+  td.mat-cell {
+    padding: 8px 16px;
+  }
+  
+  tr.mat-header-row {
+    height: 56px;
+  }
+  
+  tr.mat-row {
+    height: 48px;
+  }
+  
