@@ -1,4 +1,5 @@
 ﻿using Data;
+using General.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UserManagement.Services;
@@ -59,6 +60,7 @@ namespace Api.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ICompanyService, CompanyService>();
 
             return services;
 

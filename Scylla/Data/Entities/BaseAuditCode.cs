@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Data.Entities.UserManagement
+namespace Data.Entities
 {
     public class BaseAuditCode
     {

@@ -1,0 +1,59 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h3 class="card-title">Companies</h3>
+            </div>
+
+
+
+
+
+            
+            <div class="card-body">
+
+                <div >
+               
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <tr>
+                                    <th>CompanyId</th>
+                                    <th>CompanyName</th>
+                                    <th>CreatedBy</th>
+                                    <th>CreatedDate</th>
+                                    <th>Is Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of companyList">
+                                    <td>{{ item.companyId }}</td>
+                                    <td>{{ item.companyName }}</td>
+                                    <td>{{ item.createdBy }}</td>
+                                    <td>{{ item.createdDate }}</td>
+                                    <td>{{ item.isActive }}</td>
+                                    <td class="td-actions text-right">
+                                        <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'"
+                                            class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
+                                            class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                
+                </div>
+
+         
+            </div>
+ 
+        </div>
+    </div>
+  </div>
+  

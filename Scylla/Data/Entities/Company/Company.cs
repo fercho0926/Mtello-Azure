@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Data.Entities.Company
+﻿namespace Data.Entities.Company
 {
-    internal class Company
+    public class Company : BaseAuditCode
     {
+        public Guid CompanyId { get; set; }
+        public string CompanyName { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

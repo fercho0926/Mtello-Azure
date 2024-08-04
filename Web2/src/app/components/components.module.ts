@@ -13,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MaterialModule } from '../material/material.module';
 import { DetailsByEmployeeComponent } from './reporting/details-by-employee/details-by-employee.component';
 import { CreateComponent } from './checks/create/create.component';
+import { CompanyGridComponent } from './company/company-grid/company-grid.component';
 
 
 
@@ -33,7 +34,8 @@ import { CreateComponent } from './checks/create/create.component';
     ReportingComponent,
     ReportingDetailsComponent,
     DetailsByEmployeeComponent,
-    CreateComponent
+    CreateComponent,
+    CompanyGridComponent
   ],
   exports: [
     FooterComponent,

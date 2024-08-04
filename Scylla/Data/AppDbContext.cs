@@ -1,4 +1,5 @@
-﻿using Data.Entities.UserManagement;
+﻿using Data.Entities.Company;
+using Data.Entities.UserManagement;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data
@@ -12,6 +13,7 @@ namespace Data
         public DbSet<User> Users { get; set; }
         public DbSet<UserToAddress> UserToAddresses { get; set; }
         public DbSet<Addresses> Addresses { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
