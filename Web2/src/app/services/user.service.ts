@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Login } from 'app/auth/types/login';
 import { Sesion } from 'app/auth/types/sesion';
 import { User } from 'app/types/user-types-new';
+import { UserCreate } from 'app/types/user-create';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { User } from 'app/types/user-types-new';
 export class UserService {
 
 
+// url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
 url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
 
 //   baseUrl: string = environment.ApiUrl + 'login/';
@@ -24,7 +26,12 @@ url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
   }
 
 
-  getAllUsers(): Observable<User> {
-    return this.http.get<User>(this.url + 'User/');
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.url + 'User/');
   }
+
+  createUser(user: UserCreate): Observable<UserCreate> {
+    return this.http.post<UserCreate>(`${this.url}/Users/Create`, user);
+  }
+
 }
