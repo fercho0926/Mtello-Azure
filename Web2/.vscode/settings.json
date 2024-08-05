@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/b2f2672a-4fb7-4e6e-9c81-b697ad4bc5c4/resourceGroups/RG-Production/providers/Microsoft.Web/sites/Web-Scylla-Pdn",
+    "appService.deploySubpath": "dist"
+}

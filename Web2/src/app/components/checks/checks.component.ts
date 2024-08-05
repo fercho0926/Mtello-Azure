@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 import {ErrorStateMatcher} from '@angular/material/core';
+import { CompanyService } from 'app/services/company.service';
+import { Company } from 'app/types/company/create-company';
+
+import { HttpClient } from '@angular/common/http';
+
 
 
 
@@ -26,7 +31,27 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 
-  export class ChecksComponent {
+  export class ChecksComponent implements OnInit {
+
+
+
+
+    companyList: Company[] = [];
+
+    selectedFile: File | null = null;
+
+
+    constructor(private _formBuilder: FormBuilder, private companyService: CompanyService, private http: HttpClient) {}
+
+
+
+    ngOnInit(): void {
+      this.companyService.getAll().subscribe(data => this.companyList = data);
+    }
+
+
+
+
 
 
     selected = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
@@ -52,18 +77,52 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   
 
 
-    onFileSelected(event) {
-      const file = event.target.files[0];
-      if (file) {
-        // You can now do something with the file, like appending it to FormData or reading its contents
-        // For example, to set it as the value of a form control:
-        this.secondFormGroup.patchValue({
-          secondCtrl: file // Assuming you want to store the file in the 'secondCtrl' form control
-        });
-        // If you need to manually trigger validation or update the form state, you might need to call updateValueAndValidity()
-        this.secondFormGroup.get('secondCtrl').updateValueAndValidity();
+    // onFileSelected(event) {
+    //   const file = event.target.files[0];
+    //   if (file) {
+    //     // You can now do something with the file, like appending it to FormData or reading its contents
+    //     // For example, to set it as the value of a form control:
+    //     this.secondFormGroup.patchValue({
+    //       secondCtrl: file // Assuming you want to store the file in the 'secondCtrl' form control
+    //     });
+    //     // If you need to manually trigger validation or update the form state, you might need to call updateValueAndValidity()
+    //     this.secondFormGroup.get('secondCtrl').updateValueAndValidity();
+    //   }
+    // }
+
+
+
+
+
+
+
+
+
+
+// new logic for file upload
+
+
+    onFileSelected(event: any) {
+      this.selectedFile = event.target.files[0];
+    }
+
+
+    uploadFile() {
+      if (this.selectedFile) {
+        const formData = new FormData();
+        formData.append('file', this.selectedFile, this.selectedFile.name);
+  
+        this.http.post('http://localhost:5023/api/Paycheck/upload', formData)
+          .subscribe(response => {
+            console.log('File uploaded successfully', response);
+          }, error => {
+            console.error('Error uploading file', error);
+          });
+      } else {
+        console.error('No file selected');
       }
     }
 
-    constructor(private _formBuilder: FormBuilder) {}
+
+
   }

@@ -1,4 +1,5 @@
 ﻿using Data.Entities.Company;
+using Data.Entities.PayCheck;
 using Data.Entities.UserManagement;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,9 @@ namespace Data
         public DbSet<UserToAddress> UserToAddresses { get; set; }
         public DbSet<Addresses> Addresses { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<PayCheckRecord> PayCheckRecords { get; set; }
+        public DbSet<BatchPaycheck> BatchPaycheck { get; set; }
+
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -2,13 +2,61 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h3 class="card-title">Reporting</h3>
+                <h3 class="card-title">Batch</h3>
                 <p class="card-category">ask if they want something here.
                 </p>
             </div>
             <div class="card-body">
 
-                <div >
+
+                <div class="card-body">
+
+                    <div >
+                   
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-warning">
+                                    <tr>
+                                        <th>fileName</th>
+                                        <th>companyId</th>
+                                        <th>recordsByFile</th>
+                                        <th>recordsProcessed</th>
+                                        <th>CreatedDate</th>
+                                        <th>Is Active</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of batchList">
+                                        <td>{{ item.fileName }}</td>
+                                        <td>{{ item.companyId }}</td>
+                                        <td>{{ item.recordsByFile }}</td>
+                                        <td>{{ item.recordsProcessed }}</td>
+                                        <td>{{ item.isActive }}</td>
+                                        <td class="td-actions text-right">
+                                            <button mat-raised-button type="button" matTooltip="View details" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="details()">
+                                                <i class="material-icons">visibility</i>
+                                            </button>
+                                            <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'"
+                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
+                                                class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                    </div>
+    
+             
+                </div>
+
+                <!-- <div >
                
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
@@ -125,7 +173,7 @@
                             </table>
                         </div>
                 
-                </div>
+                </div> -->
 
          
             </div>
