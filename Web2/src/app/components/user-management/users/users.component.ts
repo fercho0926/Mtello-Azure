@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UserService } from 'app/services/user.service';
-import { UserCreate } from 'app/types/user-create';
 import { User } from 'app/types/user-types-new';
 import { AddUserComponent } from './add-user/add-user.component';
 

@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Sección del formulario -->
       <div class="col-12 col-md-6 login-form-container">
         <mat-card-content>
@@ -35,7 +35,8 @@
             <div class="form-group">
               <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input [type]="hidePassword ? 'password': 'text'" formControlName="password" matInput autocomplete="off">
+                <input [type]="hidePassword ? 'password': 'text'" formControlName="password" matInput
+                  autocomplete="off">
                 <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
                   <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
