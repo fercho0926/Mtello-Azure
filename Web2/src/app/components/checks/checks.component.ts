@@ -112,7 +112,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
         const formData = new FormData();
         formData.append('file', this.selectedFile, this.selectedFile.name);
   
-        this.http.post('http://localhost:5023/api/Paycheck/upload', formData)
+        // this.http.post('http://localhost:5023/api/Paycheck/upload', formData)
+        this.http.post('https://api-scylla-pdn2.azurewebsites.net/api/Paycheck/upload', formData)
           .subscribe(response => {
             console.log('File uploaded successfully', response);
           }, error => {

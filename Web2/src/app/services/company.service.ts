@@ -14,8 +14,8 @@ import { Company, CreateCompany } from 'app/types/company/create-company';
 export class CompanyService {
 
 
-// url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
-url = 'http://localhost:5023/api/';
+url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
+// url = 'http://localhost:5023/api/';
 
 
 //   baseUrl: string = environment.ApiUrl + 'login/';
