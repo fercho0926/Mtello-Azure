@@ -5,6 +5,9 @@ import { RolesComponent } from './roles/roles.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MaterialModule } from 'app/material/material.module';
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,12 +16,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UsersComponent,
     RolesComponent,
     PermissionsComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    AddUserComponent,
     
   ],
   imports: [
     CommonModule,
     MatTooltipModule,
+    MaterialModule,
+    ReactiveFormsModule
+
   ]
 })
 export class UserManagementModule { }

@@ -23,7 +23,7 @@ export class LoginComponent {
       private sharedService: SharedService
   ) {
     this.formLogin = this.fb.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]], // Validators should be in an array
       password: ['', Validators.required],
     });
   }

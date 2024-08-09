@@ -35,7 +35,7 @@ import { CompanyGridComponent } from './company/company-grid/company-grid.compon
     ReportingDetailsComponent,
     DetailsByEmployeeComponent,
     CreateComponent,
-    CompanyGridComponent
+    CompanyGridComponent,
   ],
   exports: [
     FooterComponent,

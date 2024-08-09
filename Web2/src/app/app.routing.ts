@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes =[
 
@@ -37,6 +38,10 @@ const routes: Routes =[
   {
     path: 'dashboard',
    component:AdminLayoutComponent,
+   canActivate: [AuthGuard], // Apply AuthGuard here
+  //  canActivateChild: [AuthGuard], // Apply AuthGuard to all child routes
+
+
     pathMatch: 'full',
     children: [{
           path: '',
@@ -48,6 +53,8 @@ const routes: Routes =[
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard], // Apply AuthGuard here
+    // canActivateChild: [AuthGuard], // Apply AuthGuard to all child routes
     children: [{
       path: '',
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)

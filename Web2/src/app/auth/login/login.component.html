@@ -25,10 +25,10 @@
                 <input matInput formControlName="email" type="email" placeholder="E-mail">
                 <mat-icon matSuffix>email</mat-icon>
                 <mat-error *ngIf="formLogin.get('email').hasError('required')">
-                  El correo electrónico es requerido
+                  E-mail is required
                 </mat-error>
                 <mat-error *ngIf="formLogin.get('email').hasError('email')">
-                  El correo electrónico no es válido
+                  The E-mail is not valid
                 </mat-error>
               </mat-form-field>
             </div>

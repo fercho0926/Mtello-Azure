@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuard } from 'app/_guards/auth.guard';
+
 
 declare const $: any;
 declare interface RouteInfo {
@@ -7,9 +9,9 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
-export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/checks', title: 'PayChecks',  icon: 'payments', class: '' },
+export const ROUTES =  [
+    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '', canActivate: [AuthGuard] },
+    { path: '/checks', title: 'PayChecks',  icon: 'payments', class: '', canActivate: [AuthGuard] },
     // { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
     // { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
     // { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
