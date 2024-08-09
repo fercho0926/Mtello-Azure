@@ -10,6 +10,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDivider, MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 
@@ -33,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDividerModule,
     MatIconModule,
     MatTableModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -43,7 +46,8 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatDividerModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

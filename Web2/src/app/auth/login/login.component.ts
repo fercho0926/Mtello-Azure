@@ -20,10 +20,10 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    //  private sharedService: SharedService
+      private sharedService: SharedService
   ) {
     this.formLogin = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
     });
   }
@@ -38,12 +38,12 @@ export class LoginComponent {
     this.userService.sigIn(request).subscribe(
       (response) => {
         this.showLoading = false;
-        // this.sharedService.saveSession(response);
+         this.sharedService.saveSession(response);
         this.router.navigate(['/dashboard']);
       },
       (error) => {
         this.showLoading = false;
-        // this.sharedService.showAlert('User or Pass Incorrect', 'Error');
+        this.sharedService.showAlert('User or Pass Incorrect', 'Error');
       }
     );
   }

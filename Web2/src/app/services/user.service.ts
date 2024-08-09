@@ -12,9 +12,10 @@ import { UserCreate } from 'app/types/user-create';
 })
 export class UserService {
 
+  baseUrl: string = environment.api_Url;
 
 // url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
-url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
+// url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
 
 //   baseUrl: string = environment.ApiUrl + 'login/';
   // baseUrl: string = this.url + 'Login/';
@@ -22,16 +23,16 @@ url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
 
   sigIn(request: Login): Observable<Sesion> {
     
-    return this.http.post<Sesion>(this.url + 'Login/', request);
+    return this.http.post<Sesion>(this.baseUrl + 'Login/', request);
   }
 
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url + 'User/');
+    return this.http.get<User[]>(this.baseUrl + 'User/');
   }
 
   createUser(user: UserCreate): Observable<UserCreate> {
-    return this.http.post<UserCreate>(`${this.url}/Users/Create`, user);
+    return this.http.post<UserCreate>(`${this.baseUrl}/Users/Create`, user);
   }
 
 }
