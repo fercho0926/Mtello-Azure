@@ -7,11 +7,12 @@ import { Sesion } from 'app/auth/types/sesion';
 import { User } from 'app/types/user-types-new';
 import { UserCreate } from 'app/types/user-create';
 import { Company, CreateCompany } from 'app/types/company/create-company';
+import { BatchPaycheck } from 'app/types/report/batch-paycheck';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CompanyService {
+export class ReportService {
 
 
 url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
@@ -22,12 +23,10 @@ url = 'https://api-scylla-pdn2.azurewebsites.net/api/';
   // baseUrl: string = this.url + 'Login/';
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(this.url + 'Company/');
+  GetAllBatchPayChecks(): Observable<BatchPaycheck[]> {
+    return this.http.get<BatchPaycheck[]>(this.url + 'Reporting/GetAllBatchPayChecks/');
   }
 
-  create(request: CreateCompany): Observable<CreateCompany> {
-    return this.http.post<CreateCompany>(`${this.url}/Company/Create`, request);
-  }
+
 
 }

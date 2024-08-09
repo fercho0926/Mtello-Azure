@@ -61,6 +61,8 @@ namespace Api.Extensions
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IPayCheckService, PayCheckService>();
+            services.AddScoped<IReportingService, ReportingService>();
 
             return services;
 

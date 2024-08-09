@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240805181731_paycheckFile")]
+    partial class paycheckFile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,54 +56,6 @@ namespace Data.Migrations
                     b.ToTable("Companies");
                 });
 
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.Property<Guid>("BatchPaycheckId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RecordsByFile")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecordsProcessed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalMoney")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BatchPaycheckId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("BatchPaycheck");
-                });
-
             modelBuilder.Entity("Data.Entities.PayCheck.PayCheckRecord", b =>
                 {
                     b.Property<Guid>("PayCheckRecordId")
@@ -108,97 +63,106 @@ namespace Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address2")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("BatchPaycheckId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Day1")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day1")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Day2")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day2")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Day3")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day3")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Day4")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day4")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Day5")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day5")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Day6")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day6")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Day7")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("Day7")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Discount")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Memo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Miscellaneous")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Money")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Money")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OverTime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Page")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rate")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("RegularPay")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TotalHours")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("TotalHours")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("TotalPay")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("TotalPay")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Wk1Overtime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wk1Regular")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wk2Overtime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wk2Regular")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ZipCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PayCheckRecordId");
-
-                    b.HasIndex("BatchPaycheckId");
 
                     b.ToTable("PayCheckRecords");
                 });
@@ -320,26 +284,6 @@ namespace Data.Migrations
                     b.ToTable("UserToAddresses");
                 });
 
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.HasOne("Data.Entities.Company.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.PayCheckRecord", b =>
-                {
-                    b.HasOne("Data.Entities.PayCheck.BatchPaycheck", null)
-                        .WithMany("PayCheckRecord")
-                        .HasForeignKey("BatchPaycheckId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Data.Entities.UserManagement.UserToAddress", b =>
                 {
                     b.HasOne("Data.Entities.UserManagement.Addresses", "Addresses")
@@ -357,11 +301,6 @@ namespace Data.Migrations
                     b.Navigation("Addresses");
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.Navigation("PayCheckRecord");
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.User", b =>

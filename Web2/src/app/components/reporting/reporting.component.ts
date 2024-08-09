@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Import Router
+import { BatchPaycheck } from 'app/types/report/batch-paycheck';
+import { ReportService } from '../../services/report.service';
 
 
 @Component({
@@ -9,10 +11,16 @@ import { Router } from '@angular/router'; // Import Router
 })
 export class ReportingComponent implements OnInit {
 
-  constructor(private router: Router) { } // Inject Router
+  batchList: BatchPaycheck[] = [];
+
+
+  constructor(private router: Router , private reportService : ReportService) { } // Inject Router
 
 
   ngOnInit(): void {
+  
+    this.reportService.GetAllBatchPayChecks().subscribe(data => this.batchList = data);
+
   }
 
   details(): void {
@@ -21,3 +29,6 @@ export class ReportingComponent implements OnInit {
   }
 
 }
+
+
+

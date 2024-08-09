@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240805191458_batch")]
+    partial class batch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,54 +54,6 @@ namespace Data.Migrations
                     b.HasKey("CompanyId");
 
                     b.ToTable("Companies");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.Property<Guid>("BatchPaycheckId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RecordsByFile")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecordsProcessed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalMoney")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BatchPaycheckId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("BatchPaycheck");
                 });
 
             modelBuilder.Entity("Data.Entities.PayCheck.PayCheckRecord", b =>
@@ -197,8 +152,6 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PayCheckRecordId");
-
-                    b.HasIndex("BatchPaycheckId");
 
                     b.ToTable("PayCheckRecords");
                 });
@@ -320,26 +273,6 @@ namespace Data.Migrations
                     b.ToTable("UserToAddresses");
                 });
 
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.HasOne("Data.Entities.Company.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.PayCheckRecord", b =>
-                {
-                    b.HasOne("Data.Entities.PayCheck.BatchPaycheck", null)
-                        .WithMany("PayCheckRecord")
-                        .HasForeignKey("BatchPaycheckId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Data.Entities.UserManagement.UserToAddress", b =>
                 {
                     b.HasOne("Data.Entities.UserManagement.Addresses", "Addresses")
@@ -357,11 +290,6 @@ namespace Data.Migrations
                     b.Navigation("Addresses");
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.Navigation("PayCheckRecord");
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.User", b =>
