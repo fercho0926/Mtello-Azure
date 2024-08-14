@@ -5,23 +5,27 @@
         <table class="table table-hover">
             <thead class="text-warning">
                 <tr>
-                    <th>Email</th>
                     <th>Identification</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Complete Name</th>
+                    <th>Email</th>
                     <th>Is Active</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of userList">
-                    <td>{{ item.email }}</td>
                     <td>{{ item.identification }}</td>
-                    <td>{{ item.firstName }}</td>
-                    <td>{{ item.lastName }}</td>
-                    <td>{{ item.isActive }}</td>
+                    <td>{{ item.firstName + " "+  item.lastName }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>
+                        <mat-slide-toggle [(ngModel)]="item.isActive" [disabled]="true"></mat-slide-toggle>
+                                        </td>
                     <td class="td-actions text-right">
-                        <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'"
+                        <button mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'"
+                        class="btn btn-info btn-link btn-sm btn-just-icon" (click)="openViewDialog(item.userId)">
+                        <i class="material-icons">visibility</i>
+                    </button>
+                        <button mat-raised-button type="button" matTooltip="Edit " [matTooltipPosition]="'above'"
                             class="btn btn-primary btn-link btn-sm btn-just-icon">
                             <i class="material-icons">edit</i>
                         </button>

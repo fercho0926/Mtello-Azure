@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { UserService } from "app/services/user.service";
 
@@ -20,9 +20,29 @@ export class AddUserComponent {
       identification: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
       firstName: ["", Validators.required],
+      middleName: [""],
       lastName: ["", Validators.required],
+      phone: [""],
       password: ["", Validators.required],
+      addresses: this.fb.array([this.createAddressGroup()]),
     });
+  }
+
+  createAddressGroup(): FormGroup {
+    return this.fb.group({
+      address: ["", Validators.required],
+      city: [""],
+      state: [""],
+      postalCode: [""],
+    });
+  }
+
+  addAddress(): void {
+    this.addresses.push(this.createAddressGroup());
+  }
+
+  get addresses(): FormArray {
+    return this.userForm.get("addresses") as FormArray;
   }
 
   save() {

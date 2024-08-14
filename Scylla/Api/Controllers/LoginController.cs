@@ -1,5 +1,4 @@
-﻿using Data.Entities.UserManagement;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UserManagement.Models;
 using UserManagement.Models.Login;
 using UserManagement.Services;
@@ -19,13 +18,14 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserDTO>> Login (LoginDTORequest request) {
+        public async Task<ActionResult<UserDTO>> Login(LoginDTORequest request)
+        {
 
-            var UserActive =  await _loginService.UserActive(request.Email);
+            var userActive = await _loginService.IsEmailCreated(request.Email);
 
-            if (UserActive == null) return Unauthorized("No valid User");
+            if (userActive == null) return Unauthorized("No valid User");
 
-            var loginSuccessful = await _loginService.Login(request, UserActive);
+            var loginSuccessful = await _loginService.Login(request, userActive);
 
             if (!loginSuccessful)
             {
@@ -35,7 +35,7 @@ namespace Api.Controllers
             return new UserDTO
             {
                 Email = request.Email,
-                Token = _tokenService.createToken(UserActive)
+                Token = _tokenService.createToken(userActive)
 
             };
 

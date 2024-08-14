@@ -15,7 +15,7 @@
   }
   
   .login-image-container {
-    background: black; /* Color de fondo de la sección del logo */
+    background: white; /* Color de fondo de la sección del logo */
     color: #fff;
     display: flex;
     align-items: center;
@@ -34,6 +34,7 @@
   }
   
   .auth-text {
+    color: black;
     font-size: 1.5rem;
     margin-top: 0;
   }

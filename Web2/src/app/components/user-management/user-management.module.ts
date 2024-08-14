@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MaterialModule } from 'app/material/material.module';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewUserComponent } from './users/view-user/view-user.component';
 
 
 
@@ -18,13 +19,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PermissionsComponent,
     UserManagementComponent,
     AddUserComponent,
+    ViewUserComponent,
     
   ],
   imports: [
     CommonModule,
     MatTooltipModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+
 
   ]
 })

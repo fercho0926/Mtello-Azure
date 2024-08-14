@@ -26,7 +26,7 @@ import { MaterialModule } from './material/material.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
 
   ],
   providers: [],

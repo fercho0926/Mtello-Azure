@@ -12,6 +12,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
 
 @NgModule({
   declarations: [],
@@ -41,6 +44,7 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatTableModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatSlideToggleModule,
   ],
 })
 export class MaterialModule {}
