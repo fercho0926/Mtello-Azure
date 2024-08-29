@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_Url : 'https://localhost:7206'
+  api_Url : 'https://scyllaapi.azurewebsites.net/api/'
 };

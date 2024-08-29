@@ -24,9 +24,16 @@ namespace Api.Controllers
             return await _userService.GetAll();
         }
 
+        // GET api/<UserController>/5
+        [HttpGet("{id}")]
+        public async Task<User> GetById(Guid id)
+        {
+            return await _userService.GetById(id);
+        }
 
         //[Authorize]
-        [HttpPost("Create")]
+        //[HttpPost("Create")]
+        [HttpPost()]
         public async Task<ActionResult<UserDTO>> Create(CreateUserRequest userRequest)
         {
 
@@ -42,30 +49,16 @@ namespace Api.Controllers
 
         }
 
+        // PUT api/<UserController>/5
+        [HttpPut("{id}")]
+        public void Put(Guid id, [FromBody] string value)
+        {
+        }
 
-        //// GET api/<UserController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST api/<UserController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<UserController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<UserController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<UserController>/5
+        [HttpDelete("{id}")]
+        public void Delete(Guid id)
+        {
+        }
     }
 }

@@ -32,7 +32,7 @@ export class UserService {
   }
 
   createUser(user: UserCreate): Observable<UserCreate> {
-    return this.http.post<UserCreate>(`${this.baseUrl}User/Create`, user);
+    return this.http.post<UserCreate>(`${this.baseUrl}User/`, user);
   }
 
 }

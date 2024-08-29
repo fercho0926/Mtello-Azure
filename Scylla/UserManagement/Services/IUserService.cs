@@ -6,6 +6,7 @@ namespace UserManagement.Services
     public interface IUserService
     {
         Task<IEnumerable<User>> GetAll();
+        Task<User> GetById(Guid id);
         Task<UserDTO> Create(CreateUserRequest request);
         Task<bool> IsUserCreated(CreateUserRequest userRequest);
 

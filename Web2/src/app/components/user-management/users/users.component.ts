@@ -24,7 +24,7 @@ userList: User[] = [];
 
   openDialog() {
     const dialogRef = this.dialog.open(AddUserComponent, {
-      width: '400px'
+      // width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

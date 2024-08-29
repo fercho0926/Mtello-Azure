@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component,  } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { UserService } from "app/services/user.service";
@@ -16,7 +16,7 @@ export class AddUserComponent {
     private dialogRef: MatDialogRef<AddUserComponent>,
     private userService: UserService
   ) {
-    this.userForm = this.fb.group({
+  this.userForm = this.fb.group({
       identification: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
       firstName: ["", Validators.required],

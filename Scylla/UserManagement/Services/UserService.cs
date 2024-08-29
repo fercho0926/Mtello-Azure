@@ -22,9 +22,14 @@ namespace UserManagement.Services
             return await _appDbContext.Users.ToListAsync();
         }
 
+        public async Task<User> GetById(Guid id)
+        {
+            return await _appDbContext.Users.FirstAsync(x => x.UserId == id);
+        }
+
         public async Task<UserDTO> Create(CreateUserRequest request)
         {
-            {
+            
 
                 using var hmac = new HMACSHA512();
 
@@ -50,30 +55,30 @@ namespace UserManagement.Services
                 };
 
 
-                foreach (var addressRequest in request.Addresses)
+            foreach (var addressRequest in request.Addresses)
+            {
+                var address = new Addresses()
                 {
-                    var address = new Addresses()
-                    {
-                        Address = addressRequest.Address,
-                        City = addressRequest.City,
-                        State = addressRequest.State,
-                        PostalCode = addressRequest.PostalCode,
-                        CreatedBy = createdBy,
-                        CreatedDate = createdDate,
-                    };
+                    Address = addressRequest.Address,
+                    City = addressRequest.City,
+                    State = addressRequest.State,
+                    PostalCode = addressRequest.PostalCode,
+                    CreatedBy = createdBy,
+                    CreatedDate = createdDate,
+                };
 
-                    var userToAddress = new UserToAddress
-                    {
-                        Users = user,
-                        Addresses = address
+                var userToAddress = new UserToAddress
+                {
+                    Users = user,
+                    Addresses = address
 
-                    };
+                };
 
-                    user.UserToAddresses.Add(userToAddress);
-                    _appDbContext.Addresses.Add(address);
-                }
+                user.UserToAddresses.Add(userToAddress);
+                _appDbContext.Addresses.Add(address);
+            }
 
-                _appDbContext.Users.Add(user);
+            _appDbContext.Users.Add(user);
                 await _appDbContext.SaveChangesAsync();
 
                 return new UserDTO
@@ -81,7 +86,7 @@ namespace UserManagement.Services
                     Email = user.Email,
                     Token = _tokenService.createToken(user)
                 };
-            }
+            
         }
 
         public async Task<bool> IsUserCreated(CreateUserRequest userRequest)
@@ -89,8 +94,6 @@ namespace UserManagement.Services
             return await _appDbContext.Users.AnyAsync(u => u.Email == userRequest.Email || u.Identification == userRequest.Identification);
         }
 
-
-
-
+      
     }
 }
