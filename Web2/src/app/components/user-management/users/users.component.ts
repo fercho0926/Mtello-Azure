@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { UserService } from 'app/services/user.service';
 import { User } from 'app/types/user-types-new';
 import { AddUserComponent } from './add-user/add-user.component';
