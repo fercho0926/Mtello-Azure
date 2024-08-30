@@ -10,6 +10,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "ES2022",
+    "skipLibCheck": true, // Ignore type definition conflicts
+
     "lib": [
       "es2020",
       "dom"
