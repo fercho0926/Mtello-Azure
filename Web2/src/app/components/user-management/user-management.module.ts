@@ -4,29 +4,27 @@ import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { UserManagementComponent } from './user-management/user-management.component';
-// import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
-// import { MaterialModule } from 'app/material/material.module';
-// import { AddUserComponent } from './users/add-user/add-user.component';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewUserComponent } from './users/view-user/view-user.component';
+import { MaterialModule } from 'app/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './users/add-user/add-user.component';
 
 
 
 @NgModule({
   declarations: [
-    UsersComponent,
-    RolesComponent,
+    AddUserComponent,
     PermissionsComponent,
+    RolesComponent,
     UserManagementComponent,
-    // AddUserComponent,
+    UsersComponent,
     ViewUserComponent,
-    
   ],
   imports: [
-    CommonModule,
-    // MaterialModule,
-    // ReactiveFormsModule,
-    // FormsModule,
+     FormsModule,
+     MaterialModule,
+     ReactiveFormsModule,
+     CommonModule,
 
 
   ]

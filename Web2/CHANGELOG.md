@@ -77,7 +77,6 @@ karma-jasmine                              1.1.1   →          2.0.1
 karma-jasmine-html-reporter                1.4.0   →          1.4.2
 protractor                                 5.3.1   →          5.4.2
 ts-node                                    5.0.1   →          8.2.0
-tslint                                     5.9.1   →         5.17.0
 typescript                                 3.1.6   →          3.4.5
 ```
 ### Bug fixing

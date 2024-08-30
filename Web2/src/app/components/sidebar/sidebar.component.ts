@@ -57,7 +57,6 @@ export class SidebarComponent implements OnInit {
     }
   }
   isMobileMenu() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     if ($(window).width() > 991) {
       return false;
     }
