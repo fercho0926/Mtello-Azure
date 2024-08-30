@@ -10,6 +10,7 @@ import { SharedService } from 'app/shared/services/shared.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
+  
 })
 export class LoginComponent {
   formLogin: FormGroup;
