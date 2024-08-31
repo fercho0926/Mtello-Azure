@@ -1,8 +1,10 @@
 <div>
-    <button mat-raised-button (click)="openDialog()">Add - User </button>
+    <button mat-raised-button (click)="openDialog()">Add - User</button>
+  
+
 
     <div class="card-body table-responsive">
-        <table class="table table-hover">
+        <table id="userTable" class="table table-hover">
             <thead class="text-warning">
                 <tr>
                     <th>Identification</th>
@@ -13,56 +15,74 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of userList">
-                    <td>{{ item.identification }}</td>
-                    <td>{{ item.firstName + " "+  item.lastName }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>
-                        <mat-slide-toggle [(ngModel)]="item.isActive" [disabled]="true"></mat-slide-toggle>
-                                        </td>
-                    <td class="td-actions text-right">
-                        <button mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'"
-                        class="btn btn-info btn-link btn-sm btn-just-icon" (click)="openViewDialog(item.userId)">
-                        <i class="material-icons">visibility</i>
-                    </button>
-                        <button mat-raised-button type="button" matTooltip="Edit " [matTooltipPosition]="'above'"
-                            class="btn btn-primary btn-link btn-sm btn-just-icon">
-                            <i class="material-icons">edit</i>
-                        </button>
-                        <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
-                            class="btn btn-danger btn-link btn-sm btn-just-icon">
-                            <i class="material-icons">close</i>
-                        </button>
-                    </td>
-                </tr>
+                <!-- DataTable will populate this part -->
             </tbody>
         </table>
     </div>
+    
 
 
+    <!-- <div class="card-body table-responsive">
+      <table id="userTable" class="table table-hover">
+        <thead class="text-warning">
+          <tr>
+            <th>Identification</th>
+            <th>Complete Name</th>
+            <th>Email</th>
+            <th>Is Active</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of userList">
+            <td>{{ item.identification }}</td>
+            <td>{{ item.firstName + " " + item.lastName }}</td>
+            <td>{{ item.email }}</td>
+            <td>
+              <mat-slide-toggle [(ngModel)]="item.isActive" [disabled]="true"></mat-slide-toggle>
+            </td>
+            <td class="td-actions text-right">
+              <button mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'"
+                class="btn btn-info btn-link btn-sm btn-just-icon" (click)="openViewDialog(item.userId)">
+                <i class="material-icons">visibility</i>
+              </button>
+              <button mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'"
+                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                <i class="material-icons">edit</i>
+              </button>
+              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
+                class="btn btn-danger btn-link btn-sm btn-just-icon">
+                <i class="material-icons">close</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+  
     <ng-template #createUserModal>
-        <h2 mat-dialog-title>Create User</h2>
-        <mat-dialog-content>
-            <form (ngSubmit)="createUser(newUserForm.value)" #newUserForm="ngForm">
-                <mat-form-field>
-                    <input matInput type="text" name="email" ngModel placeholder="Email" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput type="text" name="identification" ngModel placeholder="Identification" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput type="text" name="firstName" ngModel placeholder="First Name" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput type="text" name="lastName" ngModel placeholder="Last Name" required>
-                </mat-form-field>
-                <mat-checkbox name="isActive" ngModel> Is Active </mat-checkbox>
-                <div mat-dialog-actions>
-                    <button mat-button type="button" (click)="closeCreateUserModal()">Cancel</button>
-                    <button mat-raised-button color="primary" type="submit">Create</button>
-                </div>
-            </form>
-        </mat-dialog-content>
+      <h2 mat-dialog-title>Create User</h2>
+      <mat-dialog-content>
+        <form (ngSubmit)="createUser(newUserForm.value)" #newUserForm="ngForm">
+          <mat-form-field>
+            <input matInput type="text" name="email" ngModel placeholder="Email" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" name="identification" ngModel placeholder="Identification" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" name="firstName" ngModel placeholder="First Name" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" name="lastName" ngModel placeholder="Last Name" required>
+          </mat-form-field>
+          <mat-checkbox name="isActive" ngModel> Is Active </mat-checkbox>
+          <div mat-dialog-actions>
+            <button mat-button type="button" (click)="closeCreateUserModal()">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Create</button>
+          </div>
+        </form>
+      </mat-dialog-content>
     </ng-template>
-
-</div>
+  </div>
+  

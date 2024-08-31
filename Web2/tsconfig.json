@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "target": "ES2022",
     "skipLibCheck": true, // Ignore type definition conflicts
+    // "types": ["jquery", "datatables.net", "datatables.net-dt"],
 
     "lib": [
       "es2020",
