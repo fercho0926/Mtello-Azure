@@ -1,8 +1,9 @@
-﻿using Shared.Models.Address;
+﻿using Data.Entities;
+using Shared.Models.Address;
 
 namespace General.Models.Company
 {
-    public class CompanyResponse
+    public class CompanyResponse :BaseAuditCode
     {
         public Guid CompanyId { get; set; }
         public string CompanyName { get; set; }
@@ -10,7 +11,7 @@ namespace General.Models.Company
         public int Phone { get; set; }
         public int CompanyCode { get; set; }
         public bool IsActive { get; set; }
-        public ICollection<GetAddressResponse> Address { get; set; } = [];
+        public ICollection<GetAddressResponse> AddressList { get; set; } = [];
 
     }
 }

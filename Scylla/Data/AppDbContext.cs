@@ -1,4 +1,4 @@
-﻿using Data.Entities.Company;
+﻿using Data.Entities;
 using Data.Entities.Shared;
 using Data.Entities.UserManagement;
 using Microsoft.EntityFrameworkCore;

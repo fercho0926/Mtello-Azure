@@ -1,4 +1,5 @@
 using Api.Extensions;
+using General.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddIdentityService(builder.Configuration);
+
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
 
 var app = builder.Build();
 

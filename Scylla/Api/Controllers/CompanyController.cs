@@ -1,4 +1,4 @@
-﻿using Data.Entities.Company;
+﻿using Data.Entities;
 using General.Models.Company;
 using General.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +18,7 @@ namespace Api.Controllers
 
         //[Authorize]
         [HttpGet]
-        public async Task<IEnumerable<Company>> GetAll()
+        public async Task<IEnumerable<CompanyResponse>> GetAll()
         {
             return await _companyService.GetAll();
         }

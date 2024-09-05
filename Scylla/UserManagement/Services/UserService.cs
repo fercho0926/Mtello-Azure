@@ -47,25 +47,11 @@ namespace UserManagement.Services
                 AddressList = user.Address.Select(a => new GetAddressResponse
                 {
                     AddressId = a.AddressId,
-                    AddressLine = a.AddressLine,
+                    AddressLine = a.AddressLine ?? "",
                     City = a.City ??"",
                     State = a.State ?? "",
                     PostalCode = a.PostalCode ?? ""
                 }).ToList()
-
-                //UserToAddresses = user.UserToAddresses.Select(uta => new UserToAddressDto
-                //{
-                //    UserToAddressId = uta.UserToAddressId,
-                //    AddressesId = uta.AddressesId,
-                //    Address = new AddressDto
-                //    {
-                //        AddressesId = uta.Addresses.AddressId,
-                //        Address = uta.Addresses.AddressLine,
-                //        City = uta.Addresses.City,
-                //        State = uta.Addresses.State,
-                //        PostalCode = uta.Addresses.PostalCode
-                //    }
-                //}).ToList()
             };
 
             return result;

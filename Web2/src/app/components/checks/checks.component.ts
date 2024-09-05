@@ -3,9 +3,10 @@ import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '
 
 import {ErrorStateMatcher} from '@angular/material/core';
 import { CompanyService } from 'app/services/company.service';
-import { Company } from 'app/types/company/create-company';
+import { CreateCompany } from 'app/types/company/create-company';
 
 import { HttpClient } from '@angular/common/http';
+import { CompanyResponse } from 'app/types/company/company-response';
 
 
 
@@ -36,7 +37,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 
-    companyList: Company[] = [];
+    companyList: CompanyResponse[] = [];
 
     selectedFile: File | null = null;
 

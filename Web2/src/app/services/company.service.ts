@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Company, CreateCompany } from 'app/types/company/create-company';
+import {  CreateCompany } from 'app/types/company/create-company';
+import { CompanyResponse } from 'app/types/company/company-response';
+
 import { environment } from 'environments/environment';
 
 @Injectable({
@@ -14,8 +16,8 @@ export class CompanyService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(this.baseUrl + 'Company/');
+  getAll(): Observable<CompanyResponse[]> {
+    return this.http.get<CompanyResponse[]>(this.baseUrl + 'Company/');
   }
 
   create(request: CreateCompany): Observable<CreateCompany> {

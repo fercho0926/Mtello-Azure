@@ -1,6 +1,6 @@
-﻿using Data;
+﻿using AutoMapper;
+using Data;
 using Data.Entities;
-using Data.Entities.Company;
 using Data.Entities.Shared;
 using General.Models.Company;
 using Microsoft.EntityFrameworkCore;
@@ -10,14 +10,22 @@ namespace General.Services
     public class CompanyService : ICompanyService
     {
         private readonly AppDbContext _appDbContext;
+        private readonly IMapper _mapper;
 
-        public CompanyService(AppDbContext appDbContext)
+
+        public CompanyService(AppDbContext appDbContext, IMapper mapper)
         {
             _appDbContext = appDbContext;
+            _mapper = mapper;
+
         }
-        public async Task<IEnumerable<Company>> GetAll()
+        public async Task<IEnumerable<CompanyResponse>> GetAll()
         {
-            return await _appDbContext.Company.ToListAsync();
+            var companies  = await _appDbContext.Company.ToListAsync();
+
+            var companyResponses = _mapper.Map<IEnumerable<CompanyResponse>>(companies);
+
+            return companyResponses;
         }
 
         public async Task<CreateCompanyResponse> Create(CreateCompanyRequest request)

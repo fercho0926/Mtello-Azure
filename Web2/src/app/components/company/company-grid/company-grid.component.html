@@ -13,9 +13,9 @@
                         <table class="table table-hover">
                             <thead class="text-warning">
                                 <tr>
-                                    <th>CompanyId</th>
+                                    <th>CompanyCode</th>
                                     <th>CompanyName</th>
-                                    <th>CreatedBy</th>
+                                    <th>Email</th>
                                     <th>CreatedDate</th>
                                     <th>Is Active</th>
                                     <th>Actions</th>
@@ -23,9 +23,9 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of companyList">
-                                    <td>{{ item.companyId }}</td>
+                                    <td>{{ item.companyCode }}</td>
                                     <td>{{ item.companyName }}</td>
-                                    <td>{{ item.createdBy }}</td>
+                                    <td>{{ item.email }}</td>
                                     <td>{{ item.createdDate }}</td>
                                     <td>{{ item.isActive }}</td>
                                     <td class="td-actions text-right">

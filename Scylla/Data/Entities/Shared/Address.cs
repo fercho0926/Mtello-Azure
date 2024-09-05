@@ -21,7 +21,7 @@ namespace Data.Entities.Shared
 
         //Company Foreing Key
         public Guid? CompanyId { get; set; }
-        public Company.Company Company { get; set; }
+        public Company Company { get; set; }
 
         public Guid? UserId { get; set; }
         public User User { get; set; }

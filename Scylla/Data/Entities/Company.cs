@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Data.Entities.Shared;
 
-namespace Data.Entities.Company
+namespace Data.Entities
 {
     public class Company : BaseAuditCode
     {
