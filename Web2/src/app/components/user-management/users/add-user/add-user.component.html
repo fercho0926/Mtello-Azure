@@ -98,15 +98,15 @@
 
 
 
-                                <div formArrayName="addresses">
-                                    <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+                                <div formArrayName="addressList">
+                                    <div *ngFor="let address of addressList.controls; let i = index" [formGroupName]="i">
 
                                         <div class="row">
                                                 <div class="col">
                                                     <mat-form-field appearance="outline">
                                                         <mat-label>Address {{i+1}}</mat-label>
-                                                        <input matInput formControlName="address" maxlength="100" />
-                                                        <mat-error *ngIf="address.get('address').hasError('required')">
+                                                        <input matInput formControlName="addressLine" maxlength="100" />
+                                                        <mat-error *ngIf="address.get('addressLine').hasError('required')">
                                                             Address  {{i+1}} is required
                                                         </mat-error>
                                                     </mat-form-field>

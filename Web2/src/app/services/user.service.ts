@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { Login } from 'app/auth/types/login';
 import { Sesion } from 'app/auth/types/sesion';
 import { User } from 'app/types/user-types-new';
-import { UserCreate } from 'app/types/user-create';
-
+import { CreateUserRequest } from "app/types/user/create-user-request";
+import { CreateUserResponse } from "app/types/user/create-user-response";
 @Injectable({
   providedIn: 'root',
 })
@@ -35,8 +35,8 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + 'User/'+userId);
   }
 
-  createUser(user: UserCreate): Observable<UserCreate> {
-    return this.http.post<UserCreate>(`${this.baseUrl}User/`, user);
+  createUser(user: CreateUserResponse): Observable<CreateUserRequest> {
+    return this.http.post<CreateUserRequest>(`${this.baseUrl}User/`, user);
   }
 
   deleteById(id :string): Observable<boolean> {

@@ -20,7 +20,7 @@ namespace UserManagement.Services
 
         public async Task<User> IsEmailCreated(string email)
         {
-            return await _appDbContext.Users.FirstOrDefaultAsync(u => u.Email == email && u.IsActive);
+            return await _appDbContext.User.FirstOrDefaultAsync(u => u.Email == email && u.IsActive);
         }
 
 

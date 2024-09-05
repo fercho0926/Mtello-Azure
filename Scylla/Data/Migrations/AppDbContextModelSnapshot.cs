@@ -28,9 +28,13 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CompanyCode")
+                        .HasColumnType("int");
+
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -39,8 +43,16 @@ namespace Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Phone")
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -50,197 +62,41 @@ namespace Data.Migrations
 
                     b.HasKey("CompanyId");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
+            modelBuilder.Entity("Data.Entities.Shared.Address", b =>
                 {
-                    b.Property<Guid>("BatchPaycheckId")
+                    b.Property<Guid>("AddressId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CompanyId")
+                    b.Property<string>("AddressLine")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
+                    b.Property<string>("PostalCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FileName")
+                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecordsByFile")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("RecordsProcessed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalHours")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalMoney")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BatchPaycheckId");
+                    b.HasKey("AddressId");
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("BatchPaycheck");
-                });
+                    b.HasIndex("UserId");
 
-            modelBuilder.Entity("Data.Entities.PayCheck.PayCheckRecord", b =>
-                {
-                    b.Property<Guid>("PayCheckRecordId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("BatchPaycheckId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Day1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Day2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Day3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Day4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Day5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Day6")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Day7")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Memo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Miscellaneous")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Money")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OverTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Page")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RegularPay")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TotalHours")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TotalPay")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Wk1Overtime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Wk1Regular")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Wk2Overtime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Wk2Regular")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PayCheckRecordId");
-
-                    b.HasIndex("BatchPaycheckId");
-
-                    b.ToTable("PayCheckRecords");
-                });
-
-            modelBuilder.Entity("Data.Entities.UserManagement.Addresses", b =>
-                {
-                    b.Property<Guid>("AddressesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("AddressesId");
-
-                    b.ToTable("Addresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.User", b =>
@@ -258,11 +114,13 @@ namespace Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Identification")
                         .HasColumnType("int");
@@ -271,10 +129,12 @@ namespace Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("varbinary(max)");
@@ -282,8 +142,9 @@ namespace Data.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -293,77 +154,34 @@ namespace Data.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
-            modelBuilder.Entity("Data.Entities.UserManagement.UserToAddress", b =>
-                {
-                    b.Property<Guid>("UserToAddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AddressesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("UserToAddressId");
-
-                    b.HasIndex("AddressesId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserToAddresses");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
+            modelBuilder.Entity("Data.Entities.Shared.Address", b =>
                 {
                     b.HasOne("Data.Entities.Company.Company", "Company")
-                        .WithMany()
+                        .WithMany("Address")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Data.Entities.UserManagement.User", "User")
+                        .WithMany("Address")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Company");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data.Entities.PayCheck.PayCheckRecord", b =>
+            modelBuilder.Entity("Data.Entities.Company.Company", b =>
                 {
-                    b.HasOne("Data.Entities.PayCheck.BatchPaycheck", null)
-                        .WithMany("PayCheckRecord")
-                        .HasForeignKey("BatchPaycheckId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Data.Entities.UserManagement.UserToAddress", b =>
-                {
-                    b.HasOne("Data.Entities.UserManagement.Addresses", "Addresses")
-                        .WithMany()
-                        .HasForeignKey("AddressesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Data.Entities.UserManagement.User", "Users")
-                        .WithMany("UserToAddresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Addresses");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Data.Entities.PayCheck.BatchPaycheck", b =>
-                {
-                    b.Navigation("PayCheckRecord");
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Data.Entities.UserManagement.User", b =>
                 {
-                    b.Navigation("UserToAddresses");
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }

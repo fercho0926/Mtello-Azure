@@ -1,15 +1,14 @@
-export interface UserCreate {
-    createdDate: string;
+export interface CreateUserRequest {
+    createdDate: Date;
     createdBy: string;
-    updatedDate: string;
+    updatedDate: Date;
     updatedBy: string;
-    userId: string;
     identification: number;
     firstName: string;
     middleName: string;
     lastName: string;
     email: string;
-    phone: string;
+    phone: number;
     passwordHash: string;
     passwordSalt: string;
     isActive: boolean;

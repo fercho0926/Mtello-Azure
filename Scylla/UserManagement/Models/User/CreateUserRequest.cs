@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Shared.Models.Address;
+using System.ComponentModel.DataAnnotations;
 
-namespace UserManagement.Models
+namespace UserManagement.Models.User
 {
     public class CreateUserRequest
     {
@@ -15,7 +16,7 @@ namespace UserManagement.Models
 
         public string MiddleName { get; set; }
 
-        public string Phone { get; set; }
+        public int Phone { get; set; }
 
         [Required]
         public string? LastName { get; set; }
@@ -23,7 +24,7 @@ namespace UserManagement.Models
         [Required]
         public string Password { get; set; }
 
-        public List<CreateAddressRequest> Addresses { get; set; }
+        public List<CreateAddressRequest> AddressList { get; set; }
 
     }
 

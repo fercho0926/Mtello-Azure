@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Shared.Models.Address;
 
 namespace UserManagement.Models
 {
@@ -10,9 +11,9 @@ namespace UserManagement.Models
         public string? MiddleName { get; set; }
         public string? LastName { get; set; }
         public string Email { get; set; }
-        public string? Phone { get; set; }
+        public int Phone { get; set; }
         public bool IsActive { get; set; }
-        public List<UserToAddressDto> UserToAddresses { get; set; } = new();
+        public List<GetAddressResponse> AddressList { get; set; } = new();
     }
 
 }

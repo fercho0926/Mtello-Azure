@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UserManagement.Models
+namespace Shared.Models.Address
 {
-    public class CreateAddressRequest
+    public class GetAddressResponse
     {
-        [Required]
-        public string Address { get; set; }
+        public Guid AddressId { get; set; }
+
+        public string AddressLine { get; set; }
 
         public string City { get; set; }
 
@@ -13,5 +14,4 @@ namespace UserManagement.Models
 
         public string PostalCode { get; set; }
     }
-
 }

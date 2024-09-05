@@ -1,5 +1,5 @@
 ﻿using Data.Entities.Company;
-using Data.Entities.PayCheck;
+using Data.Entities.Shared;
 using Data.Entities.UserManagement;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,29 +11,35 @@ namespace Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserToAddress> UserToAddresses { get; set; }
-        public DbSet<Addresses> Addresses { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<PayCheckRecord> PayCheckRecords { get; set; }
-        public DbSet<BatchPaycheck> BatchPaycheck { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<Company> Company { get; set; }
+        //public DbSet<PayCheckRecord> PayCheckRecords { get; set; }
+        //public DbSet<BatchPaycheck> BatchPaycheck { get; set; }
 
 
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<UserToAddress>()
-        //        .HasKey(ua => new { ua.UserId, ua.AddressId });
 
-        //    modelBuilder.Entity<UserToAddress>()
-        //        .HasOne(ua => ua.Users)
-        //        .WithMany(u => u.UserToAddresses)
-        //        .HasForeignKey(ua => ua.UserId);
 
-        //    modelBuilder.Entity<UserToAddress>()
-        //        .HasOne(ua => ua.Addresses)
-        //        .WithMany(a => a.Users)
-        //        .HasForeignKey(ua => ua.AddressId);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Address>()
+            .HasOne(a => a.Company)
+            .WithMany(c => c.Address)
+            .HasForeignKey(a => a.CompanyId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Address>()
+            .HasOne(a => a.User)
+            .WithMany(u => u.Address)
+            .HasForeignKey(a => a.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        }
+
+
+
     }
 }

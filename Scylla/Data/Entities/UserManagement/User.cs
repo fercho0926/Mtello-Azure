@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Data.Entities.Shared;
 
 namespace Data.Entities.UserManagement
 {
     public class User : BaseAuditCode
     {
-
         public Guid UserId { get; set; }
 
         public int Identification { get; set; }
@@ -23,12 +23,13 @@ namespace Data.Entities.UserManagement
         public required string Email { get; set; }
         [MaxLength(20)]
 
-        public string? Phone { get; set; }
+        public int Phone { get; set; }
         public byte[]? PasswordHash { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public bool IsActive { get; set; }
 
-        public List<UserToAddress> UserToAddresses { get; set; } = [];
+        public ICollection<Address> Address { get; set; } = [];
+
 
     }
 }

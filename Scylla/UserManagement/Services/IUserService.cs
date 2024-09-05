@@ -1,5 +1,6 @@
 ﻿using Data.Entities.UserManagement;
 using UserManagement.Models;
+using UserManagement.Models.User;
 
 namespace UserManagement.Services
 {
@@ -7,7 +8,7 @@ namespace UserManagement.Services
     {
         Task<IEnumerable<User>> GetAll();
         Task<GetUserByIdResponse> GetById(Guid userId);
-        Task<UserDTO> Create(CreateUserRequest request);
+        Task<CreateUserResponse> Create(CreateUserRequest request);
         Task<bool> IsUserCreated(CreateUserRequest userRequest);
         Task<bool> DeleteById(Guid id);
 

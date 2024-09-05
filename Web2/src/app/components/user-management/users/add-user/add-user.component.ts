@@ -24,10 +24,6 @@ export class AddUserComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
 
   ) {
-    // this.userId = data.userId;
-    console.log('userID', this.data);
-
-
 
 
     this.loadForm();
@@ -53,14 +49,14 @@ export class AddUserComponent {
         lastName: ["", Validators.required],
         phone: [""],
         password: ["", Validators.required],
-        addresses: this.fb.array([this.createAddressGroup()]),
+        addressList: this.fb.array([this.createAddressGroup()]),
       });
 
   }
 
   createAddressGroup = (): FormGroup => {
     return this.fb.group({
-      address: ["", Validators.required],
+      addressLine: ["", Validators.required],
       city: [""],
       state: [""],
       postalCode: [""],
@@ -68,11 +64,11 @@ export class AddUserComponent {
   }
 
   addAddress(): void {
-    this.addresses.push(this.createAddressGroup());
+    this.addressList.push(this.createAddressGroup());
   }
 
-  get addresses(): FormArray {
-    return this.userForm.get("addresses") as FormArray;
+  get addressList(): FormArray {
+    return this.userForm.get("addressList") as FormArray;
   }
 
   save() {

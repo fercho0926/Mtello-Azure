@@ -1,5 +1,4 @@
 ﻿using Data;
-using Data.Entities.PayCheck;
 using Microsoft.EntityFrameworkCore;
 
 namespace General.Services
@@ -12,10 +11,10 @@ namespace General.Services
         {
             _appDbContext = appDbContext;
         }
-        public async Task<IEnumerable<BatchPaycheck>> GetAllBatchPayChecks()
-        {
-            return await _appDbContext.BatchPaycheck.ToListAsync();
-        }
+        //public async Task<IEnumerable<BatchPaycheck>> GetAllBatchPayChecks()
+        //{
+        //    return await _appDbContext.BatchPaycheck.ToListAsync();
+        //}
 
         //public async Task<BatchPaycheck> GetBatchPaycheckById(Guid id)
         //{

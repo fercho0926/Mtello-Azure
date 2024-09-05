@@ -1,5 +1,4 @@
-﻿using Data.Entities.PayCheck;
-using General.Services;
+﻿using General.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -15,12 +14,12 @@ namespace Api.Controllers
         }
 
 
-        //[Authorize]
-        [HttpGet("GetAllBatchPayChecks")]
-        public async Task<IEnumerable<BatchPaycheck>> GetAllBatchPayChecks()
-        {
-            return await _reportingService.GetAllBatchPayChecks();
-        }
+        ////[Authorize]
+        //[HttpGet("GetAllBatchPayChecks")]
+        //public async Task<IEnumerable<BatchPaycheck>> GetAllBatchPayChecks()
+        //{
+        //    //return await _reportingService.GetAllBatchPayChecks();
+        //}
 
 
 

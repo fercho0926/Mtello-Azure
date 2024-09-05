@@ -1,6 +1,7 @@
 ﻿using Data.Entities.UserManagement;
 using Microsoft.AspNetCore.Mvc;
 using UserManagement.Models;
+using UserManagement.Models.User;
 using UserManagement.Services;
 
 
@@ -30,19 +31,15 @@ namespace Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<UserDTO>> Create(CreateUserRequest userRequest)
+        public async Task<ActionResult<CreateUserResponse>> Create(CreateUserRequest userRequest)
         {
-
             var isUserCreated = await _userService.IsUserCreated(userRequest);
 
             if (isUserCreated)
             {
                 return BadRequest("E-mail already exist : " + userRequest.Email);
             }
-
-
             return await _userService.Create(userRequest);
-
         }
 
 

@@ -1,9 +1,13 @@
 ﻿using Data;
+using Data.Entities;
+using Data.Entities.Shared;
 using Data.Entities.UserManagement;
 using Microsoft.EntityFrameworkCore;
+using Shared.Models.Address;
 using System.Security.Cryptography;
 using System.Text;
 using UserManagement.Models;
+using UserManagement.Models.User;
 
 namespace UserManagement.Services
 {
@@ -19,14 +23,13 @@ namespace UserManagement.Services
         }
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _appDbContext.Users.ToListAsync();
+            return await _appDbContext.User.ToListAsync();
         }
 
         public async Task<GetUserByIdResponse> GetById(Guid userId)
         {
-            var user = await _appDbContext.Users
-            .Include(u => u.UserToAddresses)
-            .ThenInclude(uta => uta.Addresses)
+            var user = await _appDbContext.User
+            .Include(uta => uta.Address)
             .SingleOrDefaultAsync(u => u.UserId == userId);
 
             var result = new GetUserByIdResponse
@@ -41,25 +44,34 @@ namespace UserManagement.Services
                 IsActive = user.IsActive,
                 CreatedBy = user.CreatedBy,
                 CreatedDate = user.CreatedDate,
-                UserToAddresses = user.UserToAddresses.Select(uta => new UserToAddressDto
+                AddressList = user.Address.Select(a => new GetAddressResponse
                 {
-                    UserToAddressId = uta.UserToAddressId,
-                    AddressesId = uta.AddressesId,
-                    Address = new AddressDto
-                    {
-                        AddressesId = uta.Addresses.AddressesId,
-                        Address = uta.Addresses.Address,
-                        City = uta.Addresses.City,
-                        State = uta.Addresses.State,
-                        PostalCode = uta.Addresses.PostalCode
-                    }
+                    AddressId = a.AddressId,
+                    AddressLine = a.AddressLine,
+                    City = a.City ??"",
+                    State = a.State ?? "",
+                    PostalCode = a.PostalCode ?? ""
                 }).ToList()
+
+                //UserToAddresses = user.UserToAddresses.Select(uta => new UserToAddressDto
+                //{
+                //    UserToAddressId = uta.UserToAddressId,
+                //    AddressesId = uta.AddressesId,
+                //    Address = new AddressDto
+                //    {
+                //        AddressesId = uta.Addresses.AddressId,
+                //        Address = uta.Addresses.AddressLine,
+                //        City = uta.Addresses.City,
+                //        State = uta.Addresses.State,
+                //        PostalCode = uta.Addresses.PostalCode
+                //    }
+                //}).ToList()
             };
 
             return result;
         }
 
-        public async Task<UserDTO> Create(CreateUserRequest request)
+        public async Task<CreateUserResponse> Create(CreateUserRequest request)
         {
 
 
@@ -70,66 +82,71 @@ namespace UserManagement.Services
             var createdDate = DateTime.UtcNow;
 
 
-            var user = new User
+            var newUser = new User
             {
                 Identification = request.Identification,
                 Email = request.Email.ToLower(),
                 FirstName = request.FirstName.ToLower(),
                 MiddleName = request.MiddleName.ToLower(),
                 LastName = request.LastName?.ToLower(),
-                Phone = request.Phone.ToLower(),
+                Phone = request.Phone,
                 CreatedBy = createdBy,
                 CreatedDate = createdDate,
                 IsActive = true,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password)),
                 PasswordSalt = hmac.Key,
+                Address = request.AddressList.Select(a => new Address
+                {
+                    AddressLine = a.AddressLine,
+                    City = a.City,
+                    State = a.State,
+                    PostalCode = a.PostalCode
+                }).ToList()
 
             };
 
 
-            foreach (var addressRequest in request.Addresses)
-            {
-                var address = new Addresses()
-                {
-                    Address = addressRequest.Address,
-                    City = addressRequest.City,
-                    State = addressRequest.State,
-                    PostalCode = addressRequest.PostalCode,
-                    CreatedBy = createdBy,
-                    CreatedDate = createdDate,
-                };
+            //foreach (var addressRequest in request.AddressList)
+            //{
+            //    var address = new Address()
+            //    {
+            //        AddressLine = addressRequest.AddressLine,
+            //        City = addressRequest.City,
+            //        State = addressRequest.State,
+            //        PostalCode = addressRequest.PostalCode,
+          
+            //    };
 
-                var userToAddress = new UserToAddress
-                {
-                    Users = user,
-                    Addresses = address
+            //    var userToAddress = new UserToAddress
+            //    {
+            //        Users = user,
+            //        Addresses = address
 
-                };
+            //    };
 
-                user.UserToAddresses.Add(userToAddress);
-                _appDbContext.Addresses.Add(address);
-            }
+            //    //user.UserToAddresses.Add(userToAddress);
+            //    _appDbContext.Address.Add(address);
+            //}
 
-            _appDbContext.Users.Add(user);
+            _appDbContext.User.Add(newUser);
             await _appDbContext.SaveChangesAsync();
 
-            return new UserDTO
+            return new CreateUserResponse
             {
-                Email = user.Email,
-                Token = _tokenService.createToken(user)
+                UserId = newUser.UserId,
             };
 
         }
 
         public async Task<bool> IsUserCreated(CreateUserRequest userRequest)
         {
-            return await _appDbContext.Users.AnyAsync(u => u.Email == userRequest.Email || u.Identification == userRequest.Identification);
+            return await _appDbContext.User.AnyAsync(u => u.Email == userRequest.Email || u.Identification == userRequest.Identification);
         }
 
 
         public async Task<bool> DeleteById(Guid id)
         {
-            var user = await _appDbContext.Users.FindAsync(id);
+            var user = await _appDbContext.User.FindAsync(id);
 
             if (user == null)
             {
@@ -139,7 +156,7 @@ namespace UserManagement.Services
             //_appDbContext.Users.Remove(user);
 
             user.IsActive = false;
-            _appDbContext.Users.Update(user);
+            _appDbContext.User.Update(user);
             await _appDbContext.SaveChangesAsync();
 
             return true; // User deleted successfully
