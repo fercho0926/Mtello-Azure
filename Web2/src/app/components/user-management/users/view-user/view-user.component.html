@@ -1,1 +1,113 @@
-<p>view-user works!</p>
+<div *ngIf="isLoading" class="loader"></div>
+
+<div class="main-content"  *ngIf="!isLoading">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h3 class="card-title">User Details</h3>
+      </div>
+      <div class="card-body">
+        <div id="userInfo">
+          <mat-card-subtitle>User</mat-card-subtitle>
+
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col">
+                <strong>Identification:</strong> {{ userDetails.identification }}
+              </div>
+              <div class="col">
+                <strong>Firs Name:</strong> {{ userDetails.firstName }}
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col">
+                <strong>Middle Name: </strong> {{ userDetails.middleName }}
+              </div>
+              <div class="col">
+                <strong>Last Name: </strong> {{ userDetails.lastName }}
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col">
+                <strong>Email:</strong> {{ userDetails.email }}
+              </div>
+              <div class="col">
+                <strong>Phone: </strong> {{ userDetails.phone }}
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col">
+                <strong>Created Date: </strong> {{ userDetails.createdDate   | date:'yyyy-MM-dd HH:mm:ss'}}
+              </div>
+              <div class="col">
+                <strong>Created By: </strong> {{ userDetails.createdBy }}
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col">
+                <strong>Is Active :</strong> {{ userDetails.isActive }}
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div id="addressInfo">
+          <mat-card-subtitle>Address </mat-card-subtitle>
+
+          <ng-container *ngIf="userDetails.userToAddresses && userDetails.userToAddresses.length > 0; else noAddress">
+            <div *ngFor="let userToAddress of userDetails.userToAddresses">
+              <div class="container">
+                <div class="row align-items-start">
+                  <div class="col">
+                    <strong>Address: </strong> {{ userToAddress.address.address }}
+                  </div>
+                  <div class="col">
+                    <strong>City: </strong> {{ userToAddress.address.city }}
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row align-items-start">
+                  <div class="col">
+                    <strong>State: </strong> {{ userToAddress.address.state }}
+                  </div>
+                  <div class="col">
+                    <strong>Postal code: </strong> {{ userToAddress.address.postalCode }}
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+          </ng-container>
+          <ng-template #noAddress>
+            <div>No addresses available.</div>
+          </ng-template>
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+      <button mat-button (click)="close()">Close</button>
+    </div>
+  </div>
+</div>

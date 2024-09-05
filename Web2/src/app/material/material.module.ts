@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 
 
@@ -38,6 +39,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSnackBarModule,
     MatDialogModule,
     MatSlideToggleModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}

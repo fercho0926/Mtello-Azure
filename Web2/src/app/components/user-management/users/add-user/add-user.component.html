@@ -8,161 +8,148 @@
                 <div mat-dialog-content>
                     <form [formGroup]="userForm">
 
-                        <mat-card appearance="outlined">
-                            <mat-card-content>
+                        <mat-card-subtitle>User</mat-card-subtitle>
 
-                        <div class="container text-center">
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>Id</mat-label>
-                                        <input matInput formControlName="identification" />
-                                        <mat-error *ngIf="userForm.get('identification').hasError('required')">
-                                            Id is required
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput formControlName="firstName" />
-                                        <mat-error *ngIf="userForm.get('firstName').hasError('required')">
-                                            First Name is required
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Id</mat-label>
+                                    <input matInput formControlName="identification" maxlength="20" />
+                                    <mat-error *ngIf="userForm.get('identification').hasError('required')">
+                                        Id is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput formControlName="firstName" maxlength="30" />
+                                    <mat-error *ngIf="userForm.get('firstName').hasError('required')">
+                                        First Name is required
+                                    </mat-error>
+                                </mat-form-field>
                             </div>
                         </div>
 
-                        <div class="container text-center">
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>Middle Name</mat-label>
-                                        <input matInput formControlName="middleName" />
-                                    </mat-form-field>
-                                </div>
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>Last Name</mat-label>
-                                        <input matInput formControlName="lastName" />
-                                        <mat-error *ngIf="userForm.get('lastName').hasError('required')">
-                                            Last Name is required
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Middle Name</mat-label>
+                                    <input matInput formControlName="middleName" maxlength="30" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput formControlName="lastName" maxlength="30" />
+                                    <mat-error *ngIf="userForm.get('lastName').hasError('required')">
+                                        Last Name is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput formControlName="phone" maxlength="20" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email" maxlength="80" />
+                                    <mat-error *ngIf="userForm.get('email').hasError('required')">
+                                        Email is required
+                                    </mat-error>
+                                    <mat-error *ngIf="userForm.get('email').hasError('email')">
+                                        Invalid email format
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput formControlName="password" type="password" maxlength="30" />
+                                    <mat-error *ngIf="userForm.get('password').hasError('required')">
+                                        Password is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+
                             </div>
                         </div>
 
+                        <mat-divider></mat-divider>
 
-                        <div class="container text-center">
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>Phone</mat-label>
-                                        <input matInput formControlName="phone" />
-                                    </mat-form-field>
-                                </div>
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>Email</mat-label>
-                                        <input matInput formControlName="email" />
-                                        <mat-error *ngIf="userForm.get('email').hasError('required')">
-                                            Email is required
-                                        </mat-error>
-                                        <mat-error *ngIf="userForm.get('email').hasError('email')">
-                                            Invalid email format
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="container text-center">
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <mat-form-field>
-                                        <mat-label>Password</mat-label>
-                                        <input matInput formControlName="password" type="password" />
-                                        <mat-error *ngIf="userForm.get('password').hasError('required')">
-                                            Password is required
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col">
-                            
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-                        <mat-card appearance="outlined">
-                            <mat-card-content>
+
+                        <mat-card-subtitle>Address</mat-card-subtitle>
+
+
+
+
+
+
+
+
+
+
 
                                 <div formArrayName="addresses">
                                     <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
 
-                                        <div class="container text-center">
-                                            <div class="row align-items-start">
+                                        <div class="row">
                                                 <div class="col">
-                                                    <mat-form-field>
-                                                        <mat-label>Address</mat-label>
-                                                        <input matInput formControlName="address" />
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>Address {{i+1}}</mat-label>
+                                                        <input matInput formControlName="address" maxlength="100" />
                                                         <mat-error *ngIf="address.get('address').hasError('required')">
-                                                            Address is required
+                                                            Address  {{i+1}} is required
                                                         </mat-error>
                                                     </mat-form-field>
                                                 </div>
                                                 <div class="col">
-                                                    <mat-form-field>
-                                                        <mat-label>City</mat-label>
-                                                        <input matInput formControlName="city" />
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>Postal Code  {{i+1}}</mat-label>
+                                                        <input matInput formControlName="postalCode" maxlength="10" />
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>City  {{i+1}}</mat-label>
+                                                        <input matInput formControlName="city" maxlength="30" />
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col">
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>State  {{i+1}}</mat-label>
+                                                        <input matInput formControlName="state" maxlength="30" />
                                                     </mat-form-field>
                                                 </div>
                                             </div>
+                                     
+
                                         </div>
 
-                                        <div class="container text-center">
-                                            <div class="row align-items-start">
-                                                <div class="col">
-                                                    <mat-form-field>
-                                                        <mat-label>State</mat-label>
-                                                        <input matInput formControlName="state" />
-                                                    </mat-form-field>
-                                                </div>
-                                                <div class="col">
-                                                    <mat-form-field>
-                                                        <mat-label>Postal Code</mat-label>
-                                                        <input matInput formControlName="postalCode" />
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-
-
-                            </mat-card-content>
-                          </mat-card>
-
-
-                 
-
-
-
-
-                        
-                   
-                   <button mat-button type="button" (click)="addAddress()">
+                        <button mat-button type="button" (click)="addAddress()">
                             Add Address
-                        </button> 
+                        </button>
                         <button mat-button type="submit" (click)="close()">Close</button>
                         <button mat-button type="submit" (click)="save()">Save</button>
                     </form>
                 </div>
             </div>
 
-       
+
         </div>
     </div>
 </div>

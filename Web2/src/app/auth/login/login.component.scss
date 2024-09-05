@@ -60,4 +60,12 @@
   button {
     width: 100%;
   }
-  
+
+
+
+/* Styling when button is enabled */
+.login-form-container .mat-mdc-raised-button.enabled {
+  background-color: black; /* Set background color to black */
+}
+
+/* Optional: Add styles for hover and focus states */

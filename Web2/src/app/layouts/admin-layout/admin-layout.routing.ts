@@ -15,6 +15,7 @@ import { LoginComponent } from '../../auth/login/login.component';
 import { DetailsByEmployeeComponent } from 'app/components/reporting/details-by-employee/details-by-employee.component';
 import { CreateComponent } from 'app/components/checks/create/create.component';
 import { CompanyGridComponent } from 'app/components/company/company-grid/company-grid.component';
+import { ViewUserComponent } from 'app/components/user-management/users/view-user/view-user.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -32,7 +33,9 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'reporting-details-by-employee/:employeeId', component: DetailsByEmployeeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'create', component: CreateComponent},
-    {path: 'company', component: CompanyGridComponent}
+    {path: 'company', component: CompanyGridComponent},
+    {path: 'user-details', component: ViewUserComponent}
+
 
 
 

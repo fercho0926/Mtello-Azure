@@ -17,22 +17,18 @@ namespace Api.Controllers
         }
 
 
-        //[Authorize]
         [HttpGet]
         public async Task<IEnumerable<User>> GetAll()
         {
             return await _userService.GetAll();
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public async Task<User> GetById(Guid id)
+        [HttpGet("{userId}")]
+        public async Task<GetUserByIdResponse> GetById(Guid userId)
         {
-            return await _userService.GetById(id);
+            return await _userService.GetById(userId);
         }
 
-        //[Authorize]
-        //[HttpPost("Create")]
         [HttpPost()]
         public async Task<ActionResult<UserDTO>> Create(CreateUserRequest userRequest)
         {
@@ -49,7 +45,7 @@ namespace Api.Controllers
 
         }
 
-        // PUT api/<UserController>/5
+
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody] string value)
         {
@@ -57,8 +53,9 @@ namespace Api.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public async Task<bool> DeleteById(Guid id)
         {
+             return await _userService.DeleteById(id);
         }
     }
 }

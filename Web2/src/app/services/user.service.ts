@@ -31,8 +31,16 @@ export class UserService {
     return this.http.get<User[]>(this.baseUrl + 'User/');
   }
 
+  getById(userId :string): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'User/'+userId);
+  }
+
   createUser(user: UserCreate): Observable<UserCreate> {
     return this.http.post<UserCreate>(`${this.baseUrl}User/`, user);
+  }
+
+  deleteById(id :string): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl + 'User/'+id);
   }
 
 }
