@@ -116,7 +116,7 @@ dataSource: MatTableDataSource<User>;
   addDialog() {
     const dialogRef = this.dialog.open(AddUserComponent, {
       disableClose :true,
-       width: '600px',
+        width: '800px',
        data: {  editMode: false },
 
     })
@@ -130,15 +130,22 @@ dataSource: MatTableDataSource<User>;
 
   editDialog(userId :string) {
     this.dialog.open(AddUserComponent, {
-      width: '600px',
+      width: '800px',
       data: { userId: userId, editMode: true },
     });
   }
 
-  UserDetails(userId: string) {
+  UserDetailss(userId: string) {
     this.dialog.open(ViewUserComponent, {
       data: { userId: userId },
-      width: '700px'
+      width: '800px'
+    });
+  }
+
+  UserDetails(userId: string) {
+    this.dialog.open(AddUserComponent, {
+      data: { userId: userId, viewMode: true },
+      width: '800px'
     });
   }
 

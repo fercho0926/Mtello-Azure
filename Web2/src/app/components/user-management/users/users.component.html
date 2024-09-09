@@ -1,118 +1,70 @@
 <div>
-    <div class="action-bar">
-        <button mat-raised-button (click)="addDialog()">Add - User</button>
-        <!-- <mat-form-field class="search-container">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Users"> -->
-
-          <mat-form-field appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput  (keyup)="applyFilter($event.target.value)">
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-
-        <!-- </mat-form-field> -->
-      </div>
-    
-    
-  
-   <div class="card-body table-responsive">
-      <table  class="table table-hover">
-        <thead class="text-warning">
-          <tr>
-            <th>Identification</th>
-            <th>Complete Name</th>
-            <th>Email</th>
-            <th>Is Active</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of dataSource.filteredData">
-              <td>{{ item.identification }}</td>
-              <td>{{ item.firstName + " " + item.lastName }}</td>
-              <td>{{ item.email }}</td>
-              <td>
-                <mat-slide-toggle [(ngModel)]="item.isActive" [disabled]="true"></mat-slide-toggle>
-              </td>
-              <td class="td-actions text-right">
-                <button mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'"
-                  class="btn btn-info btn-link btn-sm btn-just-icon" (click)="UserDetails(item.userId)">
-                  <i class="material-icons">visibility</i>
-                </button>
-                <button mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'"
-                  class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editDialog(item.userId)">
-                  <i class="material-icons">edit</i>
-                </button>
-
-                
-                <button *ngIf="item.isActive" mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
-                  class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="openConfirmModal(item.userId)">
-                  <i class="material-icons">close</i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-
-        <!-- <tbody>
-          <tr *ngFor="let item of userList">
-            <td>{{ item.identification }}</td>
-            <td>{{ item.firstName + " " + item.lastName }}</td>
-            <td>{{ item.email }}</td>
-            <td>
-                <mat-slide-toggle 
-                [(ngModel)]="item.isActive" 
-                [disabled]="true">
-                
-              </mat-slide-toggle>
-            </td>
-        
-            <td class="td-actions text-right">
-              <button mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'"
-                class="btn btn-info btn-link btn-sm btn-just-icon" (click)="UserDetails(item.userId)">
-                <i class="material-icons">visibility</i>
-              </button>
-              <button mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'"
-                class="btn btn-primary btn-link btn-sm btn-just-icon">
-                <i class="material-icons">edit</i>
-              </button>
-              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
-                class="btn btn-danger btn-link btn-sm btn-just-icon"(click)="DeleteUser(item.userId)">
-                <i class="material-icons">close</i>
-              </button>
-            </td>
-          </tr>
-        </tbody> -->
-      </table>
-      <mat-paginator [length]="userList.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-
-    </div> 
-
-  
-    
+  <div class="action-bar">
+    <button mat-raised-button (click)="addDialog()">Add - User</button>
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
   </div>
 
+  <div class="card-body table-container">
+    <table class="table table-hover">
+      <thead class="text-warning">
+        <tr>
+          <th>Identification</th>
+          <th>Complete Name</th>
+          <th>Email</th>
+          <th>Is Active</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataSource.filteredData">
+          <td>{{ item.identification }}</td>
+          <td>{{ item.firstName + " " + item.lastName }}</td>
+          <td>{{ item.email }}</td>
+          <td>
+            <mat-slide-toggle [(ngModel)]="item.isActive" [disabled]="true"></mat-slide-toggle>
+          </td>
+          <td class="td-actions text-right">
+            <button mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'"
+              class="btn btn-info btn-link btn-sm btn-just-icon" (click)="UserDetails(item.userId)">
+              <i class="material-icons">visibility</i>
+            </button>
+            <button mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'"
+              class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="editDialog(item.userId)">
+              <i class="material-icons">edit</i>
+            </button>
+            <button *ngIf="item.isActive" mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
+              class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="openConfirmModal(item.userId)">
+              <i class="material-icons">close</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="dataSource.filteredData.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+  </div>
 
   <!-- Confirmation Modal -->
-<div class="modal" 
-tabindex="-1" 
-role="dialog" 
-[ngClass]="{'show': isModalOpen}" style="display: block;" *ngIf="isModalOpen">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Confirm Delete</h5>
-        <button type="button" class="close" (click)="closeConfirmModal()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this user?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeConfirmModal()">No</button>
-        <button type="button" class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': isModalOpen}" style="display: block;" *ngIf="isModalOpen">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button type="button" class="close" (click)="closeConfirmModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this user?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeConfirmModal()">No</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
-  

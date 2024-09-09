@@ -21,3 +21,26 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+
+
+  .full-width {
+    width: 100%;
+  }
+  
+  .card-header {
+    position: relative;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  .divider {
+    margin-top: 20px; 
+    margin-bottom: 20px;
+    background: blue;
+  }

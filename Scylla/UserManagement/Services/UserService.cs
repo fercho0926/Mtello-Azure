@@ -35,7 +35,6 @@ namespace UserManagement.Services
             var result = new GetUserByIdResponse
             {
                 UserId = user.UserId,
-                Identification = user.Identification,
                 FirstName = user.FirstName,
                 MiddleName = user.MiddleName,
                 LastName = user.LastName,
@@ -70,7 +69,6 @@ namespace UserManagement.Services
 
             var newUser = new User
             {
-                Identification = request.Identification,
                 Email = request.Email.ToLower(),
                 FirstName = request.FirstName.ToLower(),
                 MiddleName = request.MiddleName.ToLower(),
@@ -126,7 +124,7 @@ namespace UserManagement.Services
 
         public async Task<bool> IsUserCreated(CreateUserRequest userRequest)
         {
-            return await _appDbContext.User.AnyAsync(u => u.Email == userRequest.Email || u.Identification == userRequest.Identification);
+            return await _appDbContext.User.AnyAsync(u => u.Email == userRequest.Email );
         }
 
 

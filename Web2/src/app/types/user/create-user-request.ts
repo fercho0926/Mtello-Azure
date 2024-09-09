@@ -3,7 +3,6 @@ export interface CreateUserRequest {
     createdBy: string;
     updatedDate: Date;
     updatedBy: string;
-    identification: number;
     firstName: string;
     middleName: string;
     lastName: string;

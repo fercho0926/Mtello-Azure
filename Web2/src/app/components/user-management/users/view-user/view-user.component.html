@@ -1,4 +1,115 @@
-<div *ngIf="isLoading" class="loader"></div>
+
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="card">
+          <div class="card-header card-header-danger">
+              <h3 class="card-title">View User</h3>
+              <button mat-icon-button class="close-button" (click)="close()">
+                  <mat-icon>close</mat-icon>
+              </button>
+          </div>
+          <div class="card-body">
+              <div mat-dialog-content>
+                  <mat-card-title>User Information</mat-card-title>
+
+                  <div id="user">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <mat-form-field appearance="standard" class="full-width">
+                                  <mat-label>First Name : </mat-label>
+                                  <input matInput [value]="userDetails.firstName" readonly="isViewMode" />
+                                  
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-6">
+                              <mat-form-field appearance="standard" class="full-width">
+                                  <mat-label>Middle Name</mat-label>
+                                  <input matInput [value]="userDetails.middleName" readonly />
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <mat-form-field appearance="standard" class="full-width">
+                                  <mat-label>Last Name</mat-label>
+                                  <input matInput [value]="userDetails.lastName" readonly />
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-6">
+                              <mat-form-field appearance="standard" class="full-width">
+                                  <mat-label>Phone</mat-label>
+                                  <input matInput [value]="userDetails.phone" readonly />
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <mat-form-field appearance="standard" class="full-width">
+                                  <mat-label>Email</mat-label>
+                                  <input matInput [value]="userDetails.email" readonly />
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <mat-form-field appearance="standard" class="full-width">
+                                  <mat-label>Password</mat-label>
+                              </mat-form-field>
+                          </div>
+                      </div>
+                  </div>
+
+                  <mat-divider class="divider"></mat-divider>
+
+                  <mat-card-title>Address Information</mat-card-title>
+
+                  <!-- <div>
+                      <div *ngFor="let address of userDetails.addressList; let i = index">
+                          <div class="row">
+                              <div class="col-md-9">
+                                  <mat-form-field appearance="standard" class="full-width">
+                                      <mat-label>Address {{i+1}}</mat-label>
+                                      <input matInput [value]="address.addressLine" readonly />
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                  <mat-form-field appearance="standard" class="full-width">
+                                      <mat-label>Postal Code {{i+1}}</mat-label>
+                                      <input matInput [value]="address.postalCode" readonly />
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <mat-form-field appearance="standard" class="full-width">
+                                      <mat-label>City {{i+1}}</mat-label>
+                                      <input matInput [value]="address.city" readonly />
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                  <mat-form-field appearance="standard" class="full-width">
+                                      <mat-label>State {{i+1}}</mat-label>
+                                      <input matInput [value]="address.state" readonly />
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                      </div>
+                  </div> -->
+
+                  <div class="button-container">
+                      <button mat-button type="button" class="btn btn-primary btn-round" (click)="close()">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div *ngIf="isLoading" class="loader"></div>
 
 <div class="main-content"  *ngIf="!isLoading">
   <div class="container-fluid">
@@ -110,4 +221,4 @@
       <button mat-button (click)="close()">Close</button>
     </div>
   </div>
-</div>
+</div> -->

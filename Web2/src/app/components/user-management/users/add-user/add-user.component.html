@@ -2,154 +2,168 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h3 class="card-title">Add User</h3>
+                <h3 class="card-title">
+                    {{ isViewMode ? (isEditMode ? 'Edit User' : 'View User') : (isEditMode ? 'Edit User' : 'Add User') }}
+                </h3>
+                <button mat-icon-button class="close-button" (click)="close()">
+                    <mat-icon>close</mat-icon>
+                </button>
             </div>
             <div class="card-body">
                 <div mat-dialog-content>
-                    <form [formGroup]="userForm">
+                    <form [formGroup]="userForm" (keydown.enter)="onKeydown($event)">
+                        <mat-card-title>User Information</mat-card-title>
 
-                        <mat-card-subtitle>User</mat-card-subtitle>
-
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Id</mat-label>
-                                    <input matInput formControlName="identification" maxlength="20" />
-                                    <mat-error *ngIf="userForm.get('identification').hasError('required')">
-                                        Id is required
-                                    </mat-error>
-                                </mat-form-field>
+                        <div id="user">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="standard" class="full-width">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput formControlName="firstName" maxlength="30"  [readonly]="isViewMode" />
+                                        <mat-error *ngIf="userForm.get('firstName').hasError('required')">
+                                            First Name is required
+                                        </mat-error>
+                                        <mat-error *ngIf="userForm.get('firstName').hasError('noSpecialChars')">
+                                            Special characters are not allowed.
+                                          </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="standard" class="full-width" >
+                                        <mat-label>Middle Name</mat-label>
+                                        <input matInput formControlName="middleName" maxlength="30"  [readonly]="isViewMode" />
+                                        <mat-error *ngIf="userForm.get('middleName').hasError('noSpecialChars')">
+                                            Special characters are not allowed.
+                                          </mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput formControlName="firstName" maxlength="30" />
-                                    <mat-error *ngIf="userForm.get('firstName').hasError('required')">
-                                        First Name is required
-                                    </mat-error>
-                                </mat-form-field>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="standard" class="full-width">
+                                        <mat-label>Last Name</mat-label>
+                                        <input matInput formControlName="lastName" maxlength="30" [readonly]="isViewMode" />
+                                        <mat-error *ngIf="userForm.get('lastName').hasError('required')">
+                                            Last Name is required
+                                        </mat-error>
+                                        <mat-error *ngIf="userForm.get('lastName').hasError('noSpecialChars')">
+                                            Special characters are not allowed.
+                                          </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="standard" class="full-width">
+                                        <mat-label>Phone</mat-label>
+                                        <input matInput formControlName="phone" maxlength="20" type="tel" [readonly]="isViewMode" />
+                                        <mat-error
+                                            *ngIf="userForm.get('phone').invalid && (userForm.get('phone').dirty || userForm.get('phone').touched)">
+                                            <ng-container *ngIf="userForm.get('phone').errors.pattern">
+                                                phone number must contain only numbers.
+                                            </ng-container>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field appearance="standard" class="full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="email" maxlength="80" [readonly]="isViewMode" />
+                                        <mat-error *ngIf="userForm.get('email').hasError('required')">
+                                            Email is required
+                                        </mat-error>
+                                        <mat-error *ngIf="userForm.get('email').hasError('email')">
+                                            Invalid email format
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="standard" class="full-width">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput formControlName="password" type="password" maxlength="30" />
+                                        <mat-error *ngIf="userForm.get('password').hasError('required')">
+                                            Password is required
+                                        </mat-error>
+                                        <mat-error *ngIf="userForm.get('password').hasError('minlength')">
+                                            Password must be at least 8 characters long
+                                        </mat-error>
+                                        <mat-error *ngIf="userForm.get('password').hasError('pattern')">
+                                            Password must contain at least one uppercase letter, one lowercase letter, and one number
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Middle Name</mat-label>
-                                    <input matInput formControlName="middleName" maxlength="30" />
-                                </mat-form-field>
-                            </div>
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Last Name</mat-label>
-                                    <input matInput formControlName="lastName" maxlength="30" />
-                                    <mat-error *ngIf="userForm.get('lastName').hasError('required')">
-                                        Last Name is required
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Phone</mat-label>
-                                    <input matInput formControlName="phone" maxlength="20" />
-                                </mat-form-field>
-                            </div>
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Email</mat-label>
-                                    <input matInput formControlName="email" maxlength="80" />
-                                    <mat-error *ngIf="userForm.get('email').hasError('required')">
-                                        Email is required
-                                    </mat-error>
-                                    <mat-error *ngIf="userForm.get('email').hasError('email')">
-                                        Invalid email format
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Password</mat-label>
-                                    <input matInput formControlName="password" type="password" maxlength="30" />
-                                    <mat-error *ngIf="userForm.get('password').hasError('required')">
-                                        Password is required
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="col">
+                        <mat-divider class="divider"></mat-divider>
 
-                            </div>
-                        </div>
+                        <mat-card-title>Address Information</mat-card-title>
 
-                        <mat-divider></mat-divider>
+                        <div formArrayName="addressList">
+                            <div *ngFor="let address of addressList.controls; let i = index" [formGroupName]="i">
 
 
-                        <mat-card-subtitle>Address</mat-card-subtitle>
-
-
-
-
-
-
-
-
-
-
-
-                                <div formArrayName="addressList">
-                                    <div *ngFor="let address of addressList.controls; let i = index" [formGroupName]="i">
-
-                                        <div class="row">
-                                                <div class="col">
-                                                    <mat-form-field appearance="outline">
-                                                        <mat-label>Address {{i+1}}</mat-label>
-                                                        <input matInput formControlName="addressLine" maxlength="100" />
-                                                        <mat-error *ngIf="address.get('addressLine').hasError('required')">
-                                                            Address  {{i+1}} is required
-                                                        </mat-error>
-                                                    </mat-form-field>
-                                                </div>
-                                                <div class="col">
-                                                    <mat-form-field appearance="outline">
-                                                        <mat-label>Postal Code  {{i+1}}</mat-label>
-                                                        <input matInput formControlName="postalCode" maxlength="10" />
-                                                    </mat-form-field>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col">
-                                                    <mat-form-field appearance="outline">
-                                                        <mat-label>City  {{i+1}}</mat-label>
-                                                        <input matInput formControlName="city" maxlength="30" />
-                                                    </mat-form-field>
-                                                </div>
-
-                                                <div class="col">
-                                                    <mat-form-field appearance="outline">
-                                                        <mat-label>State  {{i+1}}</mat-label>
-                                                        <input matInput formControlName="state" maxlength="30" />
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                     
-
-                                        </div>
-
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <mat-form-field appearance="standard" class="full-width">
+                                            <mat-label>Address {{i+1}}</mat-label>
+                                            <input matInput formControlName="addressLine" maxlength="100"[readonly]="isViewMode" />
+                                            <mat-error *ngIf="address.get('addressLine').hasError('required')">
+                                                Address {{i+1}} is required
+                                            </mat-error>
+                                        </mat-form-field>
                                     </div>
-                        <button mat-button type="button" (click)="addAddress()">
-                            Add Address
-                        </button>
-                        <button mat-button type="submit" (click)="close()">Close</button>
-                        <button mat-button type="submit" (click)="save()">Save</button>
+                                    <div class="col-md-3">
+                                        <mat-form-field appearance="standard" class="full-width">
+                                            <mat-label>Postal Code {{i+1}}</mat-label>
+                                            <input matInput formControlName="postalCode" maxlength="10" [readonly]="isViewMode" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="full-width">
+                                            <mat-label>City {{i+1}}</mat-label>
+                                            <input matInput formControlName="city" maxlength="30" [readonly]="isViewMode" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="standard" class="full-width">
+                                            <mat-label>State {{i+1}}</mat-label>
+                                            <input matInput formControlName="state" maxlength="30" [readonly]="isViewMode" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div *ngIf="i === 1">
+                                    <button 
+                                      mat-button 
+                                      type="button" 
+                                      class="btn btn-secondary btn-round"
+                                      (click)="removeAddress(i)"
+                                    >
+                                        Remove Address
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div>
+                            <button mat-button type="button"  *ngIf="addressList.length < 2 && !isViewMode"class="btn btn-round" (click)="addAddress()">
+                                Add Address
+                            </button>
+                            <button mat-button type="submit" class="btn btn-primary btn-round"
+                                (click)="close()">Close</button>
+                            <button mat-button type="submit" class="btn btn-info btn-round" (click)="save()"
+                                [disabled]="!userForm.valid" *ngIf="!isViewMode" >Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>

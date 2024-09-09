@@ -5,8 +5,6 @@ namespace UserManagement.Models.User
 {
     public class CreateUserRequest
     {
-        [Required]
-        public int Identification { get; set; }
 
         [Required]
         public string Email { get; set; }
