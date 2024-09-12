@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UserManagement.Models.User
 {
-    public class CreateUserRequest
+    public class UpdateUserRequest
     {
+        public Guid UserId { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -19,11 +20,13 @@ namespace UserManagement.Models.User
         [Required]
         public string? LastName { get; set; }
 
-        [Required]
-        public string Password { get; set; }
+        public string? UpdatedBy { get; set; }
 
-        public List<CreateAddressRequest> AddressList { get; set; }
+
+
+        public bool IsActive { get; set; }
+
+        public List<UpdateAddressRequest>? AddressList { get; set; }
 
     }
-
 }

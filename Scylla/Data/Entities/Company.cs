@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 using Data.Entities.Shared;
 
 namespace Data.Entities
@@ -18,7 +19,7 @@ namespace Data.Entities
         public required string Email { get; set; }
 
         [Required]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         public int CompanyCode { get; set; }
 

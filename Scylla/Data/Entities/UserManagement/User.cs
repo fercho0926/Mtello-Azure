@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 using Data.Entities.Shared;
 
 namespace Data.Entities.UserManagement
@@ -21,7 +22,7 @@ namespace Data.Entities.UserManagement
         public required string Email { get; set; }
 
         [MaxLength(20)]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public byte[]? PasswordHash { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public bool IsActive { get; set; }

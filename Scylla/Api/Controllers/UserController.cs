@@ -43,9 +43,28 @@ namespace Api.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] string value)
+        // PUT api/user/{userId}
+        [HttpPut()]
+        public async Task<IActionResult> Update(UpdateUserRequest request)
         {
+            //if (userId == Guid.Empty)
+            //{
+            //    return BadRequest("Invalid user ID.");
+            //}
+
+            if (request == null)
+            {
+                return BadRequest("Request body cannot be null.");
+            }
+
+            var isUpdated = await _userService.Update(request);
+
+            if (!isUpdated)
+            {
+                return NotFound("User not found.");
+            }
+
+            return NoContent(); // Indicates that the update was successful but there is no content to return
         }
 
         // DELETE api/<UserController>/5

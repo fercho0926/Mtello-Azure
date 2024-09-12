@@ -11,6 +11,7 @@ namespace UserManagement.Services
         Task<CreateUserResponse> Create(CreateUserRequest request);
         Task<bool> IsUserCreated(CreateUserRequest userRequest);
         Task<bool> DeleteById(Guid id);
+        Task<bool> Update(UpdateUserRequest request);
 
 
 
